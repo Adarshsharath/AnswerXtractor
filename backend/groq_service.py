@@ -84,9 +84,10 @@ def generate_study_material(document_context, tool_type):
     """
     
     prompts = {
-        "flashcards": """Extract 10-15 key concepts and their definitions from the document. 
-        Output ONLY a JSON array of objects with 'question' and 'answer' fields.
-        Example: {"flashcards": [{"question": "What is X?", "answer": "X is Y."}]}""",
+        "flashcards": """Extract 8-12 of the most important points, key concepts, or takeaways from the document. 
+        Each point should have a concise title (2-6 words) and a brief description (1-2 sentences).
+        Output ONLY a JSON array of objects with 'title' and 'description' fields.
+        Example: {"flashcards": [{"title": "Main Concept", "description": "This explains the core idea in simple terms."}]}""",
         
         "quiz": """Create a 10-question multiple-choice quiz based on the document.
         Output ONLY a JSON array of objects with 'question', 'options' (array of 4 strings), and 'correct_index' (0-3).
