@@ -18,6 +18,10 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 CORS(app)
 db.init_app(app)
 
+# Ensure database tables are created (runs even under Gunicorn)
+with app.app_context():
+    db.create_all()
+
 # Authentication decorator
 def token_required(f):
     @wraps(f)
