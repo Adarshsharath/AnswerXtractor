@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 
+// Configure axios base URL for production
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || ''
+
 const AuthContext = createContext(null)
 
 export const useAuth = () => {
@@ -20,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       localStorage.setItem('token', token)
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      
+
       // Decode token to get user info (simple JWT decode)
       try {
         const payload = JSON.parse(atob(token.split('.')[1]))
